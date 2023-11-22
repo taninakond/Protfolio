@@ -5,18 +5,15 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [react()],
     build: {
-        manifest: true,
+        manifest: false,
         minify: false,
         outDir: 'build', // Specify the output directory for the build
+        // Customize the HTML template
         rollupOptions: {
-            input: {
-                main: './src/main.jsx', // Specify the entry point
-            },
             output: {
-                entryFileNames: 'main.js',
-                assetFileNames: 'assets/[name][extname]',
-                format: 'iife',
+                manualChunks: undefined, // Disable automatic chunk splitting
             },
         },
+        assetsInlineLimit: 0, // Inline all assets
     },
 });
